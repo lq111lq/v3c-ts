@@ -5,13 +5,28 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config build/webpack.config.js",
-    "build_watch": "webpack --config build/webpack.config.js -w"
+    "build_watch": "webpack --config build/webpack.config.js -w",
+    "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js",
+    "unit-single-run": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
     "babel-loader": "^8.0.4",
+    "chai": "^4.2.0",
+    "cross-env": "^5.2.0",
+    "karma": "^3.1.1",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-coverage": "^1.1.2",
+    "karma-mocha": "^1.3.0",
+    "karma-sinon-chai": "^2.0.2",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-spec-reporter": "0.0.32",
+    "karma-webpack": "^3.0.5",
+    "mocha": "^5.2.0",
+    "sinon": "^7.1.1",
+    "sinon-chai": "^3.3.0",
     "ts-loader": "^5.3.0",
     "tslint": "^5.11.0",
     "tslint-config-standard": "^8.0.1",
@@ -20,5 +35,6 @@
     "webpack-cli": "^3.1.2"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {}
 }
