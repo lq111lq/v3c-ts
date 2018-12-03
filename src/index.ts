@@ -1,7 +1,16 @@
-function greeter (person) {
-  return 'Hello, ' + person
+import EventDispatcher from './core/EventDispatcher'
+
+class Dog extends EventDispatcher {
+  bark () {
+    this.$emit('bark')
+    console.log('Woof! Woof!')
+  }
 }
 
-let user = 'Jane User1'
+const dog = new Dog()
+dog.$on('bark', () => {
+  console.log(dog)
+})
 
-document.body.innerHTML = greeter(user)
+dog.bark()
+dog.$off

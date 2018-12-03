@@ -19,6 +19,12 @@ module.exports = {
     THREE: 'THREE',
     Vue: 'Vue'
   },
+  resolve: {
+    extensions: ['.js', '.ts'],
+    alias: {
+      'src': path.resolve(__dirname, '../src')
+    }
+  },
   module: {
     rules: [{
       test: /\.js$/,
