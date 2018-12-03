@@ -6,8 +6,8 @@ export default class EventDispatcher {
    * 用于存储 event 和 callback 映射关系的对象
    */
   private _events: object = Object.create(null)
-  private _eventErrorHandler: Function = function name(e: Error, message: string) {
-    console.log(message);
+  private _eventErrorHandler: Function = function name (e: Error, message: string) {
+    console.log(message)
   }
 
   public setEventErrorHandler (value: Function) {
