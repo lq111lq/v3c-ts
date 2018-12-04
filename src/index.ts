@@ -1,16 +1,7 @@
 import EventDispatcher from './core/EventDispatcher'
+import ThreeAssets from './core/ThreeAssets'
 
-class Dog extends EventDispatcher {
-  bark () {
-    this.$emit('bark')
-    console.log('Woof! Woof!')
-  }
+export default {
+  EventDispatcher,
+  ThreeAssets
 }
-
-const dog = new Dog()
-dog.$on('bark', () => {
-  console.log(dog)
-})
-
-dog.bark()
-dog.$off

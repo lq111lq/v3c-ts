@@ -1,3 +1,5 @@
+import preventReactive from './util/preventReactive'
+
 /**
  * EventDispatcher基类，提供事件的监听，和触发功能。
  */
@@ -10,6 +12,10 @@ export default class EventDispatcher {
     console.log(message)
   }
 
+  constructor () {
+    preventReactive(this, '_events')
+    preventReactive(this, '_eventErrorHandler')
+  }
   public setEventErrorHandler (value: Function) {
     this._eventErrorHandler = value
   }
