@@ -2,10 +2,7 @@
 //   http://karma-runner.github.io/0.13/config/configuration-file.html
 // we are also using it with karma-webpack
 //   https://github.com/webpack/karma-webpack
-
-var webpackConfig = require('../../build/webpack.config')
-delete webpackConfig.entry
-delete webpackConfig.output
+var webpackConfig = require('../../build/webpack.test.config')
 
 module.exports = function karmaConfig (config) {
   config.set({
