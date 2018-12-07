@@ -1,5 +1,5 @@
 import EventDispatcher from './EventDispatcher'
-import preventReactive from './util/preventReactive'
+import preventReactive from '../util/preventReactive'
 let uid = 0
 
 export default class ThreeAssets extends EventDispatcher {

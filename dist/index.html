@@ -9,16 +9,23 @@
 </head>
 
 <body>
-  <div id="app"></div>
+  <div id="app">
+    {{a}}
+    <webgl-renderer :width="800" :height="800">
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dat.gui@0.7.3/build/dat.gui.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.97.0/build/three.min.js"></script>
+  <script src="./VueDatGui.umd.js"></script>
   <script src="./v3c.umd.js"></script>
   <script>
+    Vue.use(VueDatGui)
+    Vue.use(v3c)
+
     var app = new Vue({
       el: '#app',
-      data: function () {
-        return {
-          threeAssets: new v3c.ThreeAssets({name: 123})
-        }
+      data: {
+        a:123
       }
     })
   </script>

@@ -17,7 +17,11 @@ module.exports = {
   },
   externals: {
     THREE: 'THREE',
-    Vue: 'Vue'
+    vue: {
+      commonjs: "vue",
+      commonjs2: "vue",
+      root: "Vue"
+    }
   },
   resolve: {
     extensions: ['.js', '.ts'],

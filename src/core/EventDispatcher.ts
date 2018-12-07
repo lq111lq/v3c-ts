@@ -1,4 +1,4 @@
-import preventReactive from './util/preventReactive'
+import preventReactive from '../util/preventReactive'
 
 /**
  * EventDispatcher基类，提供事件的监听，和触发功能。
