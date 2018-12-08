@@ -8,19 +8,21 @@ interface xyz {
   z: number
 }
 
-function xyzDefaultValueFn () :xyz {
-  return {
-    x: 0,
-    y: 0,
-    z: 0
+function xyzDefaultValueFn (defaultValue:number = 0):Function {
+  return function ():xyz {
+    return {
+      x: defaultValue,
+      y: defaultValue,
+      z: defaultValue
+    }
   }
 }
 
 @Component
 export default class WebGLRenderer extends Vue {
-  @Prop({ default: xyzDefaultValueFn }) private position!: xyz
-  @Prop({ default: xyzDefaultValueFn }) private rotation!: xyz
-  @Prop({ default: xyzDefaultValueFn }) private scale!: xyz
+  @Prop({ default: xyzDefaultValueFn(0) }) private position!: xyz
+  @Prop({ default: xyzDefaultValueFn(0) }) private rotation!: xyz
+  @Prop({ default: xyzDefaultValueFn(1) }) private scale!: xyz
 
   name:string = 'Object3D'
 
@@ -35,7 +37,7 @@ export default class WebGLRenderer extends Vue {
   @Watch('rotation', { immediate: true, deep: true })
   @Watch('scale', { immediate: true, deep: true })
   update(val: string, oldVal: string) {
-    var object3D = this.Object3DAssets.getThreeAssets()
+    var object3D = this.getObject3D()
     if (object3D) {
       object3D.position.x = Number(this.position.x)
       object3D.position.y = Number(this.position.y)
