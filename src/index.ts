@@ -6,13 +6,18 @@
 //   ThreeAssets
 // }
 
-import WebGLRenderer from './components/renderers/WebGLRenderer'
+import WebGLRenderer from 'src/components/renderers/WebGLRenderer'
+import Scene from 'src/components/scene/Scene'
+import Mesh from 'src/components/objects/Mesh'
+
+const prefix:string = 'v3c-'
 
 export default {
   version: '0.0.1',
   prefix: '',
   install (Vue, options) {
-    console.log(WebGLRenderer)
-    Vue.component('webgl-renderer', WebGLRenderer)
+    Vue.component(`${prefix}webgl-renderer`, WebGLRenderer)
+    Vue.component(`${prefix}scene`, Scene)
+    Vue.component(`${prefix}mesh`, Mesh)
   }
 }

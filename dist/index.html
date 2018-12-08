@@ -10,8 +10,11 @@
 
 <body>
   <div id="app">
-    {{a}}
-    <webgl-renderer :width="800" :height="800">
+    <v3c-webgl-renderer :width="800" :height="800">
+      <v3c-Scene>
+        <v3c-mesh></v3c-mesh>
+      </v3c-Scene>
+    </v3c-webgl-renderer>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dat.gui@0.7.3/build/dat.gui.min.js"></script>

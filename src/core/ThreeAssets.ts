@@ -4,10 +4,12 @@ let uid = 0
 
 export default class ThreeAssets extends EventDispatcher {
   private _threeAssets: any
-  private id: string = `assetes: ${ ++uid }`
+  private id: number
+  private type: string
 
   constructor (threeAssets: any) {
     super()
+    this.id = ++uid
     preventReactive(this, '_threeAssets')
     this.setThreeAssets(threeAssets)
   }
@@ -15,12 +17,7 @@ export default class ThreeAssets extends EventDispatcher {
   public setThreeAssets (newAssets: any): void {
     let oldAssets = this._threeAssets
     this._threeAssets = newAssets
-    // Object.defineProperty(this, '_threeAssets', {
-    //   value : newAssets,
-    //   configurable : true,
-    //   writable: true,
-    //   enumerable: false
-    // })
+    this.type = newAssets && newAssets.type || ''
 
     this.$emit('update', {
       oldAssets: oldAssets,

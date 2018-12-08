@@ -8,6 +8,14 @@ function resolve (dir) {
 module.exports = {
   mode: "development", // "production" | "development" | "none"
   devtool: "inline-source-map",
+  externals: {
+    three: 'three',
+    vue: {
+      commonjs: "vue",
+      commonjs2: "vue",
+      root: "Vue"
+    }
+  },
   resolve: {
     extensions: ['.js', '.ts'],
     alias: {

@@ -16,7 +16,11 @@ module.exports = {
     libraryExport: 'default'
   },
   externals: {
-    THREE: 'THREE',
+    three: {
+      commonjs: "three",
+      commonjs2: "three",
+      root: "THREE"
+    },
     vue: {
       commonjs: "vue",
       commonjs2: "vue",
@@ -26,7 +30,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.ts'],
     alias: {
-      'src': path.resolve(__dirname, '../src')
+      'src': resolve('src')
     }
   },
   module: {
@@ -35,7 +39,7 @@ module.exports = {
       loader: 'babel-loader',
       include: [resolve('src')]
     }, { 
-      test: /\.tsx?$/, loader: "ts-loader" 
+      test: /\.tsx?$/, loader: ["babel-loader","ts-loader"]
     }]
   }
 }
