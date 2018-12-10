@@ -9,9 +9,6 @@ class RenderContext {
   sceneAssets: ThreeAssets = new ThreeAssets(null)
   cameraAssets: ThreeAssets = new ThreeAssets(null)
 
-  constructor () {
-  }
-
   get renderer () {
     return this.rendererAssets.getThreeAssets()
   }
@@ -42,7 +39,7 @@ export default class WebGLRenderer extends Vue {
   @Prop({ default: '400' }) private width!: number
   @Prop({ default: '400' }) private height!: number
 
-  renderContext:RenderContext = new RenderContext()
+  renderContext: RenderContext = new RenderContext()
 
   render (createElement) {
     return createElement(
@@ -58,19 +55,19 @@ export default class WebGLRenderer extends Vue {
   }
 
   created () {
-    var renderer = new THREE.WebGLRenderer();
+    let renderer = new THREE.WebGLRenderer()
     renderer.setSize(this.width, this.height)
     renderer.domElement.style.display = 'block'
 
-    var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
-    camera.position.z = 5;
+    let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
+    camera.position.z = 5
 
-    var scene = new THREE.Scene();
+    let scene = new THREE.Scene()
 
-    var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-    var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-    var cube = new THREE.Mesh( geometry, material );
-    scene.add( cube );
+    let geometry = new THREE.BoxGeometry(1, 1, 1)
+    let material = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
+    let cube = new THREE.Mesh(geometry, material)
+    scene.add(cube)
 
     this.renderContext.renderer = renderer
     this.renderContext.camera = camera
@@ -104,7 +101,7 @@ export default class WebGLRenderer extends Vue {
         renderContext.sceneAssets = componentInstance.Object3DAssets
       }
     }
-    
+
   }
 
   contextRender () {

@@ -2,14 +2,14 @@ import * as THREE from 'three'
 import { Component, Prop, Provide, Inject, Vue, Watch } from 'vue-property-decorator'
 import ThreeAssets from '../../core/ThreeAssets'
 
-interface xyz {
+interface XYZ {
   x: number
   y: number
   z: number
 }
 
-function xyzDefaultValueFn (defaultValue:number = 0):Function {
-  return function ():xyz {
+function xyzDefaultValueFn (defaultValue: number = 0): Function {
+  return function (): XYZ {
     return {
       x: defaultValue,
       y: defaultValue,
@@ -20,24 +20,24 @@ function xyzDefaultValueFn (defaultValue:number = 0):Function {
 
 @Component
 export default class WebGLRenderer extends Vue {
-  @Prop({ default: xyzDefaultValueFn(0) }) private position!: xyz
-  @Prop({ default: xyzDefaultValueFn(0) }) private rotation!: xyz
-  @Prop({ default: xyzDefaultValueFn(1) }) private scale!: xyz
+  @Prop({ default: xyzDefaultValueFn(0) }) private position!: XYZ
+  @Prop({ default: xyzDefaultValueFn(0) }) private rotation!: XYZ
+  @Prop({ default: xyzDefaultValueFn(1) }) private scale!: XYZ
 
-  name:string = 'Object3D'
+  name: string = 'Object3D'
 
   @Provide('parentObject3DAssets') Object3DAssets: ThreeAssets = new ThreeAssets(null)
   @Inject({ default: null }) parentObject3DAssets!: ThreeAssets
 
   render (createElement) {
-    return createElement('span', { style: { display: 'none'}}, this.$slots.default)
+    return createElement('span', { style: { display: 'none' } }, this.$slots.default)
   }
 
   @Watch('position', { immediate: true, deep: true })
   @Watch('rotation', { immediate: true, deep: true })
   @Watch('scale', { immediate: true, deep: true })
-  update(val: string, oldVal: string) {
-    var object3D = this.getObject3D()
+  update (val: string, oldVal: string) {
+    let object3D = this.getObject3D()
     if (object3D) {
       object3D.position.x = Number(this.position.x)
       object3D.position.y = Number(this.position.y)
@@ -53,17 +53,17 @@ export default class WebGLRenderer extends Vue {
     }
   }
 
-  createObject3D ():THREE.Object3D {
+  createObject3D (): THREE.Object3D {
     return new THREE.Object3D()
   }
 
-  getObject3D ():THREE.Object3D | null {
+  getObject3D (): THREE.Object3D | null {
     if (this.Object3DAssets) {
       return this.Object3DAssets.getThreeAssets()
     }
   }
 
-  getParentObject3D ():THREE.Object3D | null  {
+  getParentObject3D (): THREE.Object3D | null {
     if (this.parentObject3DAssets) {
       return this.parentObject3DAssets.getThreeAssets()
     }
@@ -74,8 +74,8 @@ export default class WebGLRenderer extends Vue {
       this.Object3DAssets.setThreeAssets(this.createObject3D())
     }
 
-    let object3D:THREE.Object3D = this.getObject3D()
-    let parentObject3D:THREE.Object3D = this.getParentObject3D()
+    let object3D: THREE.Object3D = this.getObject3D()
+    let parentObject3D: THREE.Object3D = this.getParentObject3D()
 
     if (object3D && parentObject3D) {
       parentObject3D.add(object3D)
