@@ -55,7 +55,7 @@ export default class WebGLRenderer extends Vue {
   }
 
   created () {
-    let renderer = new THREE.WebGLRenderer()
+    let renderer = new THREE.WebGLRenderer({antialias: true})
     renderer.setSize(this.width, this.height)
     renderer.domElement.style.display = 'block'
 
@@ -83,6 +83,12 @@ export default class WebGLRenderer extends Vue {
     }
   }
 
+  destroyed() {
+    if (this.renderContext.renderer) {
+      this.renderContext.renderer.dispose()
+    }
+  }
+
   updateRenderContext () {
     let renderContext = this.renderContext
 
@@ -98,7 +104,7 @@ export default class WebGLRenderer extends Vue {
       }
 
       if (componentInstance instanceof Scene) {
-        renderContext.sceneAssets = componentInstance.Object3DAssets
+        renderContext.sceneAssets = componentInstance.object3dAssets
       }
     }
 

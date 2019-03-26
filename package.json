@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config build/webpack.config.js",
-    "build_watch": "webpack --config build/webpack.config.js -w",
+    "dev": "webpack --config build/webpack.config.js -w",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js",
     "unit-single-run": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run"
   },

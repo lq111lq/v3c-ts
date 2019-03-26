@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <v3c-webgl-renderer :width="400" :height="400" style="float:left">
+      <v3c-scene>
+        <v3c-mesh 
+          :position="[
+            mesh.position.x,
+            mesh.position.y,
+            mesh.position.z
+          ]"
+          :rotation="[
+            mesh.rotation.x,
+            mesh.rotation.y,
+            mesh.rotation.z
+          ]"
+          :scale="[
+            mesh.scale.x,
+            mesh.scale.y,
+            mesh.scale.z
+          ]"
+        >
+          <v3c-mesh-basic-material
+            :color="material.color"
+            :wireframe="material.wireframe"
+            :opacity="material.opacity"
+            :transparent="material.transparent"
+          ></v3c-mesh-basic-material>
+          <v3c-box-geometry
+            :width="geometry.width"
+            :height="geometry.height"
+            :depth="geometry.depth"
+            :width-segments="geometry.widthSegments"
+            :height-segments="geometry.heightSegments"
+            :depth-segments="geometry.depthSegments"
+          ></v3c-box-geometry>
+        </v3c-mesh>
+      </v3c-scene>
+    </v3c-webgl-renderer>
+    <dat-gui style="float:left;background: black;">
+      <dat-folder name="position">
+        <dat-value label="x" v-model="mesh.position.x" :min="-10" :max="10"></dat-value>
+        <dat-value label="y" v-model="mesh.position.y" :min="-10" :max="10"></dat-value>
+        <dat-value label="z" v-model="mesh.position.z" :min="-10" :max="10"></dat-value>
+      </dat-folder>
+      <dat-folder name="scale">
+        <dat-value label="x" v-model="mesh.scale.x" :min="0" :max="10"></dat-value>
+        <dat-value label="y" v-model="mesh.scale.y" :min="0" :max="10"></dat-value>
+        <dat-value label="z" v-model="mesh.scale.z" :min="0" :max="10"></dat-value>
+      </dat-folder>
+      <dat-folder name="rotation">
+        <dat-value label="x" v-model="mesh.rotation.x" :min="-3.14" :max="3.14"></dat-value>
+        <dat-value label="y" v-model="mesh.rotation.y" :min="-3.14" :max="3.14"></dat-value>
+        <dat-value label="z" v-model="mesh.rotation.z" :min="-3.14" :max="3.14"></dat-value>
+      </dat-folder>
+      <dat-folder name="material">
+        <dat-value label="wireframe" v-model="material.wireframe"></dat-value>
+        <dat-value label="transparent" v-model="material.transparent"></dat-value>
+        <dat-value label="opacity" v-model="material.opacity" :min="0" :max="1" :step="0.1" ></dat-value>
+        <dat-color label="color" v-model="material.color"></dat-color>
+      </dat-folder>
+      <dat-folder name="geometry">
+        <dat-value label="width" v-model="geometry.width" :min="1" :max="10" ></dat-value>
+        <dat-value label="height" v-model="geometry.height" :min="1" :max="10" ></dat-value>
+        <dat-value label="depth" v-model="geometry.depth" :min="1" :max="10" ></dat-value>
+        <dat-value label="widthSegments" v-model="geometry.widthSegments" :min="1" :max="10" ></dat-value>
+        <dat-value label="heightSegments" v-model="geometry.heightSegments" :min="1" :max="10" ></dat-value>
+        <dat-value label="depthSegments" v-model="geometry.depthSegments" :min="1" :max="10" ></dat-value>
+      </dat-folder>
+    </dat-gui>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dat.gui@0.7.3/build/dat.gui.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.97.0/build/three.min.js"></script>
+  <script src="./VueDatGui.umd.js"></script>
+  <script src="../dist/v3c.umd.js"></script>
+  <script>
+    Vue.use(VueDatGui)
+    Vue.use(v3c)
+
+    var app = new Vue({
+      el: '#app',
+      data: {
+        mesh: {
+          position: {
+            x: 0,
+            y: 0,
+            z: 0
+          },
+          scale: {
+            x: 1,
+            y: 1,
+            z: 1
+          },
+          rotation: {
+            x: 0,
+            y: 0,
+            z: 0
+          }
+        },
+        material: {
+          wireframe: false,
+          transparent: false,
+          color: '#00ff00',
+          opacity: 1
+        },
+        geometry: {
+          width:1,
+          height:1,
+          depth:1,
+          widthSegments:2,
+          heightSegments:2,
+          depthSegments:2,
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

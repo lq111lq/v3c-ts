@@ -6,6 +6,7 @@ export default class ThreeAssets extends EventDispatcher {
   private _threeAssets: any
   private id: number
   private type: string
+  private version: number = 0
 
   constructor (threeAssets: any) {
     super()
@@ -18,6 +19,7 @@ export default class ThreeAssets extends EventDispatcher {
     let oldAssets = this._threeAssets
     this._threeAssets = newAssets
     this.type = newAssets && newAssets.type || ''
+    this.version++
 
     this.$emit('update', {
       oldAssets: oldAssets,
