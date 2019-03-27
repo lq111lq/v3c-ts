@@ -26,7 +26,7 @@ export default class ThreeAsset extends EventDispatcher {
     if (newAsset) {
       this.type = newAsset.type || ''
       this.isGeometry = newAsset.isGeometry || false
-      this.isGeometry = newAsset.isGeometry || false
+      this.isMaterial = newAsset.isMaterial || false
     }
 
     this.version++

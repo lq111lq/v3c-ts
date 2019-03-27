@@ -25,15 +25,15 @@ const defMaterial = new ThreeAsset(new THREE.MeshBasicMaterial({ color: 0x00ff00
 export default class Mesh extends Object3D {
   @Provide('assetsRepository') assetsRepository: MeshAssetsRepository = new MeshAssetsRepository()
 
-  get geometryAsset() {
+  get geometryAsset () {
     return this.assetsRepository.geometryAsset || defGeometry
   }
 
-  get materialAsset() {
+  get materialAsset () {
     return this.assetsRepository.materialAsset || defMaterial
   }
 
-  @Watch('materialAssets', { immediate: true, deep: true })
+  @Watch('materialAsset', { immediate: true, deep: true })
   materialChanged (newMaterial) {
     let o = this.getObject3D() as THREE.Mesh
     if (o) {
@@ -41,7 +41,7 @@ export default class Mesh extends Object3D {
     }
   }
 
-  @Watch('geometryAssets', { immediate: true, deep: true })
+  @Watch('geometryAsset', { immediate: true, deep: true })
   geometryChanged (newGeometry) {
     let o = this.getObject3D() as THREE.Mesh
     if (o) {
