@@ -1,36 +1,36 @@
 import * as THREE from 'three'
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import ThreeAssets from '../../core/ThreeAssets'
+import ThreeAsset from '../../core/ThreeAsset'
 import renderList from 'src/util/renderList'
 import Scene from 'src/components/scene/Scene'
 
 class RenderContext {
-  rendererAssets: ThreeAssets = new ThreeAssets(null)
-  sceneAssets: ThreeAssets = new ThreeAssets(null)
-  cameraAssets: ThreeAssets = new ThreeAssets(null)
+  rendererAsset: ThreeAsset = new ThreeAsset(null)
+  sceneAsset: ThreeAsset = new ThreeAsset(null)
+  cameraAsset: ThreeAsset = new ThreeAsset(null)
 
   get renderer () {
-    return this.rendererAssets.getThreeAssets()
+    return this.rendererAsset.getThreeAsset()
   }
 
   set renderer (value) {
-    this.rendererAssets.setThreeAssets(value)
+    this.rendererAsset.setThreeAsset(value)
   }
 
   get scene () {
-    return this.sceneAssets.getThreeAssets()
+    return this.sceneAsset.getThreeAsset()
   }
 
   set scene (value) {
-    this.sceneAssets.setThreeAssets(value)
+    this.sceneAsset.setThreeAsset(value)
   }
 
   get camera () {
-    return this.cameraAssets.getThreeAssets()
+    return this.cameraAsset.getThreeAsset()
   }
 
   set camera (value) {
-    this.cameraAssets.setThreeAssets(value)
+    this.cameraAsset.setThreeAsset(value)
   }
 }
 
@@ -104,7 +104,7 @@ export default class WebGLRenderer extends Vue {
       }
 
       if (componentInstance instanceof Scene) {
-        renderContext.sceneAssets = componentInstance.object3dAssets
+        renderContext.sceneAsset = componentInstance.object3dAssets
       }
     }
 

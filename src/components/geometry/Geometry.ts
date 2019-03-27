@@ -1,28 +1,28 @@
 import * as THREE from 'three'
-import ThreeAssets from '../../core/ThreeAssets'
+import ThreeAsset from '../../core/ThreeAsset'
 import AssetsRepository from 'src/core/AssetsRepository'
 import { Component, Prop, Provide, Inject, Vue, Watch } from 'vue-property-decorator'
 import Base from 'src/core/Base'
 
 @Component({ name: 'Geometry' })
 export default class Geometry extends Base {
-  geometryAssets: ThreeAssets = new ThreeAssets(null)
+  geometryAssets: ThreeAsset = new ThreeAsset(null)
 
   @Inject({ default: null }) assetsRepository!: AssetsRepository
 
   @Prop({ default: '' }) id!: string
 
   getGeometry (): THREE.Geometry {
-    return this.geometryAssets.getThreeAssets()
+    return this.geometryAssets.getThreeAsset()
   }
 
   createGeometry () {
     return new THREE.Geometry()
   }
 
-  updateGeometryAssets () {
+  updateGeometryAsset() {
     this.destroyGeometry()
-    this.geometryAssets.setThreeAssets(this.createGeometry())
+    this.geometryAssets.setThreeAsset(this.createGeometry())
   }
 
   destroyGeometry () {
@@ -31,9 +31,9 @@ export default class Geometry extends Base {
   }
 
   created () {
-    this.updateGeometryAssets()
+    this.updateGeometryAsset()
     if (this.assetsRepository && this.geometryAssets) {
-      this.assetsRepository.set(this.id, 'geometry', this.geometryAssets)
+      this.assetsRepository.set(this.id, this.geometryAssets)
     }
   }
 

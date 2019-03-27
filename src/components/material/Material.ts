@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import ThreeAssets from '../../core/ThreeAssets'
+import ThreeAssets from '../../core/ThreeAsset'
 import AssetsRepository from 'src/core/AssetsRepository'
 import { Component, Prop, Provide, Inject, Vue, Watch } from 'vue-property-decorator'
 import Base from 'src/core/Base'
@@ -46,22 +46,22 @@ export default class Material extends Base {
   }
 
   created () {
-    this.materialAssets.setThreeAssets(this.createMaterial())
+    this.materialAssets.setThreeAsset(this.createMaterial())
 
     if (this.assetsRepository && this.materialAssets) {
-      this.assetsRepository.set(this.id, 'material', this.materialAssets)
+      this.assetsRepository.set(this.id, this.materialAssets)
     }
   }
 
   destroyed () {
     if (this.assetsRepository && this.materialAssets) {
-      this.assetsRepository.delete(this.id, 'material', this.materialAssets)
+      this.assetsRepository.delete(this.id, this.materialAssets)
     }
     let material = this.getMaterial()
     material && material.dispose()
   }
 
   getMaterial () {
-    return this.materialAssets.getThreeAssets()
+    return this.materialAssets.getThreeAsset()
   }
 }

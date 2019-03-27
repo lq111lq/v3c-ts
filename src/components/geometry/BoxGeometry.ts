@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import ThreeAssets from '../../core/ThreeAssets'
+import ThreeAsset from '../../core/ThreeAsset'
 import AssetsRepository from 'src/core/AssetsRepository'
 import { Component, Prop, Provide, Inject, Vue, Watch } from 'vue-property-decorator'
 import Geometry from './Geometry'
@@ -19,8 +19,8 @@ export default class BoxGeometry extends Geometry {
   @Watch('widthSegments')
   @Watch('heightSegments')
   @Watch('depthSegments')
-  doUpdateGeometryAssets () {
-    this.updateGeometryAssets()
+  doUpdateGeometryAsset () {
+    this.updateGeometryAsset()
   }
 
   createGeometry () {

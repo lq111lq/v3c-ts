@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { Component, Prop, Provide, Inject, Vue, Watch } from 'vue-property-decorator'
-import ThreeAssets from 'src/core/ThreeAssets'
+import ThreeAsset from 'src/core/ThreeAsset'
 import Base from 'src/core/Base'
 
 type XYZ = [number, number, number]
@@ -17,8 +17,8 @@ export default class Object3D extends Base {
   @Prop({ default: xyzDefaultValueFn(0) }) private rotation!: XYZ
   @Prop({ default: xyzDefaultValueFn(1) }) private scale!: XYZ
 
-  @Provide('parentObject3D') object3dAssets: ThreeAssets = new ThreeAssets(null)
-  @Inject({ default: null }) parentObject3D!: ThreeAssets
+  @Provide('parentObject3D') object3dAssets: ThreeAsset = new ThreeAsset(null)
+  @Inject({ default: null }) parentObject3D!: ThreeAsset
 
   @Watch('position', { immediate: true, deep: true })
   updatePosition (val?: string, oldVal?: string) {
@@ -59,19 +59,19 @@ export default class Object3D extends Base {
 
   getObject3D (): THREE.Object3D | null {
     if (this.object3dAssets) {
-      return this.object3dAssets.getThreeAssets()
+      return this.object3dAssets.getThreeAsset()
     }
   }
 
   getParentObject3D (): THREE.Object3D | null {
     if (this.parentObject3D) {
-      return this.parentObject3D.getThreeAssets()
+      return this.parentObject3D.getThreeAsset()
     }
   }
 
   created () {
     if (typeof this.createObject3D === 'function') {
-      this.object3dAssets.setThreeAssets(this.createObject3D())
+      this.object3dAssets.setThreeAsset(this.createObject3D())
       this.updatePosition()
       this.updateRotation()
       this.updateScale()
