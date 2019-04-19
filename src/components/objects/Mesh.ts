@@ -10,8 +10,14 @@ class MeshAssetsRepository extends AssetsRepository {
 
   public set (key: string, threeAsset: ThreeAsset) {
     if (threeAsset.isMaterial) {
+      if (this.materialAsset) {
+        console.warn('复数个材质')
+      }
       this.materialAsset = threeAsset
     } else if (threeAsset.isGeometry) {
+      if (this.geometryAsset) {
+        console.warn('复数个几何体')
+      }
       this.geometryAsset = threeAsset
     }
   }

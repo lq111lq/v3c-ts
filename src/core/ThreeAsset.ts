@@ -4,6 +4,9 @@ import uuid from 'uuid/v1'
 
 let id = 0
 
+/**
+ * ThreeJS 中的对象的封装类
+ */
 export default class ThreeAsset extends EventDispatcher {
   private _threeAsset: any
   public uuid: number
